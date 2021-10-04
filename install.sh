@@ -109,20 +109,20 @@ install_Xray() {
     cd /usr/local/Xray/
 
     if [ $# == 0 ]; then
-        last_version=v$(curl -sL https://data.jsdelivr.com/v1/package/gh/scaleya/Xray | jq -r .versions[0])
+        last_version=v$(curl -sL https://data.jsdelivr.com/v1/package/gh/mainians/Xray | jq -r .versions[0])
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}检测 Xray 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 Xray 版本安装${plain}"
             exit 1
         fi
         echo -e "检测到 Xray 最新版本：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/${last_version}/Xray-linux-${arch}.zip
+        wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 Xray 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/${last_version}/Xray-linux-${arch}.zip"
+        url="https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip"
         echo -e "开始安装 Xray v$1"
         wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
@@ -136,7 +136,7 @@ install_Xray() {
     chmod +x Xray
     mkdir /etc/Xray/ -p
     rm /etc/systemd/system/Xray.service -f
-    file="https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/Xray.service"
+    file="https://cdn.jsdelivr.net/gh/mainians/Xray@main/Xray.service"
     wget -N --no-check-certificate -O /etc/systemd/system/Xray.service ${file}
     #cp -f Xray.service /etc/systemd/system/
     systemctl daemon-reload
@@ -170,7 +170,7 @@ install_Xray() {
         cp dns.json /etc/Xray/
     fi
 
-    curl -o /usr/bin/Xray -Ls https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/Xray.sh
+    curl -o /usr/bin/Xray -Ls https://cdn.jsdelivr.net/gh/mainians/Xray@main/Xray.sh
     chmod +x /usr/bin/Xray
     ln -s /usr/bin/Xray /usr/bin/xray
     chmod +x /usr/bin/xray

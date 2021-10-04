@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/install.sh)
+    bash <(curl -Ls https://cdn.jsdelivr.net/gh/mainians/Xray@main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,7 +108,7 @@ update() {
     #        fi
     #        return 0
     #    fi
-    bash <(curl -Ls https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/install.sh) $version
+    bash <(curl -Ls https://cdn.jsdelivr.net/gh/mainians/Xray@main/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}更新完成，已自动重启 Xray，请使用 Xray log 查看运行日志${plain}"
         exit
@@ -271,7 +271,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/Xray -N --no-check-certificate https://cdn.jsdelivr.net/gh/Scaleya/Xray@main/Xray.sh
+    wget -O /usr/bin/Xray -N --no-check-certificate https://cdn.jsdelivr.net/gh/mainians/Xray@main/Xray.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}下载脚本失败，请检查本机能否连接 Github${plain}"
