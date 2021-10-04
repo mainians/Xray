@@ -115,24 +115,26 @@ install_Xray() {
             exit 1
         fi
         echo -e "检测到 Xray 最新版本：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip
+        wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip.gz https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 Xray 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip"
+        url="https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip.gz"
         echo -e "开始安装 Xray v$1"
-        wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip ${url}
+        wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 Xray v$1 失败，请确保此版本存在${plain}"
             exit 1
         fi
     fi
 
+    gunzip Xray-linux.zip.gz
     unzip Xray-linux.zip
     rm Xray-linux.zip -f
+    rm Xray-linux.zip.gz -f
     chmod +x Xray
     mkdir /etc/Xray/ -p
     rm /etc/systemd/system/Xray.service -f
