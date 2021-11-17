@@ -97,7 +97,7 @@ check_status() {
 }
 
 install_acme() {
-    bash <(curl -sL https://cdn.jsdelivr.net/gh/acmesh-official/acme.sh@master/acme.sh)
+    bash <(curl -skL https://cdn.jsdelivr.net/gh/acmesh-official/acme.sh@master/acme.sh)
 }
 
 install_Xray() {
@@ -109,7 +109,7 @@ install_Xray() {
     cd /usr/local/Xray/
 
     if [ $# == 0 ]; then
-        last_version=v$(curl -sL https://data.jsdelivr.com/v1/package/gh/mainians/Xray | jq -r .versions[0])
+        last_version=v$(curl -skL https://data.jsdelivr.com/v1/package/gh/mainians/Xray | jq -r .versions[0])
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}检测 Xray 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 Xray 版本安装${plain}"
             exit 1
@@ -172,7 +172,7 @@ install_Xray() {
         cp dns.json /etc/Xray/
     fi
 
-    curl -o /usr/bin/Xray -Ls https://cdn.jsdelivr.net/gh/mainians/Xray@main/Xray.sh
+    curl -o /usr/bin/Xray -Lks https://cdn.jsdelivr.net/gh/mainians/Xray@main/Xray.sh
     chmod +x /usr/bin/Xray
     ln -s /usr/bin/Xray /usr/bin/xray
     chmod +x /usr/bin/xray

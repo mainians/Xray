@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://cdn.jsdelivr.net/gh/mainians/Xray@main/install.sh)
+    bash <(curl -Lks https://cdn.jsdelivr.net/gh/mainians/Xray@main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,7 +108,7 @@ update() {
     #        fi
     #        return 0
     #    fi
-    bash <(curl -Ls https://cdn.jsdelivr.net/gh/mainians/Xray@main/install.sh) $version
+    bash <(curl -Lks https://cdn.jsdelivr.net/gh/mainians/Xray@main/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}更新完成，已自动重启 Xray，请使用 Xray log 查看运行日志${plain}"
         exit
@@ -258,7 +258,7 @@ show_log() {
 }
 
 install_bbr() {
-    bash <(curl -L -s https://cdn.jsdelivr.net/gh/chiakge/Linux-NetSpeed@master/tcp.sh)
+    bash <(curl -L -sk https://cdn.jsdelivr.net/gh/chiakge/Linux-NetSpeed@master/tcp.sh)
     #if [[ $? == 0 ]]; then
     #    echo ""
     #    echo -e "${green}安装 bbr 成功，请重启服务器${plain}"
