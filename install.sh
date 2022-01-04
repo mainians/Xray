@@ -115,7 +115,7 @@ install_Xray() {
             exit 1
         fi
         echo -e "检测到 Xray 最新版本：${last_version}，开始安装"
-        last_version=v0.7.3.0
+        #last_version=v0.7.3.0
         wget -N --no-check-certificate -O /usr/local/Xray/Xray-linux.zip.gz https://cdn.jsdelivr.net/gh/mainians/Xray@main/${last_version}/Xray-linux-${arch}.zip.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 Xray 失败，请确保你的服务器能够下载 Github 的文件${plain}"
